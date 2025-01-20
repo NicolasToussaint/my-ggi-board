@@ -53,7 +53,7 @@ def retrieve_env():
         print("- Cannot find env var GGI_GITHUB_TOKEN. Please set it and re-run me.")
         exit(1)
 
-   github_host_root = ''
+    github_host_root = ''
     if 'github_host' in params and params['github_host'] != 'null':
         print(f"- Using GitHub on-premise host {params['github_host']} " +
               "from configuration file.")

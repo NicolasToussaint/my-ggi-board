@@ -71,6 +71,7 @@ def retrieve_env():
     # ex. https://<user>.github.io/my-ggi-board/
     #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
     params['GGI_PAGES_URL'] = 'https://nicolastoussaint.github.io/my-ggi-board/'
+    #GITHUB_PAGES_URL="https://${GITHUB_ACTOR}.github.io/${GITHUB_REPOSITORY#*/}/"
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')
 
     return params
@@ -80,10 +81,10 @@ def retrieve_github_issues(params: dict):
     print(f"\n# Retrieving project from GitHub at {params['GGI_GITHUB_URL']}.")
     # Using an access token
     auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
-#    if 'GGI_API_URL' in params:
-    g = Github(auth=auth, base_url=params['GGI_API_URL'])
-#    else:
-#        g = Github(auth=auth)
+    if params['GGI_API_URL'] == None :
+        g = Github(auth=auth)
+    else:
+        g = Github(auth=auth, base_url=params['GGI_API_URL'])
     repo = g.get_repo(params["github_project"])
 
     """

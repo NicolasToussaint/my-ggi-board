@@ -5,7 +5,7 @@ layout: default
 
 {{% content "includes/initialisation.inc" %}}
 
-This dashboard tracks information from your [GGI board instance](https://github.com/issues). See the [Activity timeline of the project](https://github.com/NicolasToussaint/my-ggi-board/activity).
+This dashboard tracks information from your [GGI board instance](https://github.com/NicolasToussaint/issues). See the [Activity timeline of the project](https://github.com/NicolasToussaint/my-ggi-board/activity).
 
 Please refer to the [official documentation](https://ospo-alliance.org/ggi).
 

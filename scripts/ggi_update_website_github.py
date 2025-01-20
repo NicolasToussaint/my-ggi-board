@@ -63,7 +63,7 @@ def retrieve_env():
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin(params['github_host'] + '/', params['GGI_GITHUB_PROJECT'])
     else:
         # Public Web Github
-        params['GGI_API_URL'] = null
+        params['GGI_API_URL'] = None
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
         print("- Using public GitHub instance.")
 

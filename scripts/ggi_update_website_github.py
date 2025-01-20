@@ -38,12 +38,12 @@ def retrieve_env():
     with open(file_conf, 'r', encoding='utf-8') as f:
         params = json.load(f)
 
-    if 'GITHUB_REPO_NAME' in os.environ: # github.repository
-        params['GGI_GITHUB_PROJECT'] = os.environ['GITHUB_REPO_NAME']
+    if 'GGI_GITHUB_REPOSITORY' in os.environ: # github.repository
+        params['GGI_GITHUB_PROJECT'] = os.environ['GGI_GITHUB_REPOSITORY']
         print(f"- Using GitHub project {params['GGI_GITHUB_PROJECT']} " +
               "from environment variable file.")
     elif 'github_project' in params:
-        params['GGI_GITHUB_PROJECT'] = os.environ['github_project']
+        params['GGI_GITHUB_PROJECT'] = params['github_project']
         print(f"- Using GitHub project {params['github_project']} " +
               "from configuration file.")
     else:

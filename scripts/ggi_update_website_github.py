@@ -74,13 +74,12 @@ def retrieve_env():
             re.sub('^.*/', '', params['GGI_GITHUB_PROJECT']))
         print("- Using public GitHub instance.")
 
-    params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], 'issues')
+    params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'] + '/', 'issues')
     print(f"*** GGI_ACTIVITIES_URL= {params['GGI_ACTIVITIES_URL']}")
     print(f"*** GGI_GITHUB_URL= {params['GGI_GITHUB_URL']}")
     print(f"*** GGI_PAGES_URL= {params['GGI_PAGES_URL']}")
 
     return params
-
 
 def retrieve_github_issues(params: dict):
     print(f"\n# Retrieving project from GitHub at {params['GGI_GITHUB_URL']}.")

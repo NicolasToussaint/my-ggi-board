@@ -71,7 +71,8 @@ def retrieve_env():
     params['GGI_GITHUB_URL'] = urllib.parse.urljoin(github_host_root + '/', params['GGI_GITHUB_PROJECT'])
     # FIXME - find real url to Pages, or manually build it
     # ex. https://<user>.github.io/my-ggi-board/
-    params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
+    #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
+    params['GGI_PAGES_URL'] = 'https://nicolastoussaint.github.io/my-ggi-board/'
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')
 
     return params

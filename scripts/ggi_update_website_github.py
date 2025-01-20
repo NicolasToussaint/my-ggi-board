@@ -54,21 +54,19 @@ def retrieve_env():
         exit(1)
 
     params['GGI_GITHUB_PROJECT'] = params['github_project']
-    github_host_root = ''
 
     if 'github_host' in params and params['github_host'] != 'null':
         print(f"- Using GitHub on-premises host {params['github_host']} " +
               "from configuration file.")
         # Github Enterprise with custom hostname
         params['GGI_API_URL'] = f"{params['github_host']}/api/v3"
-        github_host_root = params['github_host']
+        params['GGI_GITHUB_URL'] = urllib.parse.urljoin(params['github_host'] + '/', params['GGI_GITHUB_PROJECT'])
     else:
         # Public Web Github
-        #params['GGI_API_URL'] = ""
-        github_host_root = 'https://github.com'
+        params['GGI_API_URL'] = null
+        params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
         print("- Using public GitHub instance.")
 
-    params['GGI_GITHUB_URL'] = urllib.parse.urljoin(github_host_root + '/', params['GGI_GITHUB_PROJECT'])
     # FIXME - find real url to Pages, or manually build it
     # ex. https://<user>.github.io/my-ggi-board/
     #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
@@ -82,10 +80,10 @@ def retrieve_github_issues(params: dict):
     print(f"\n# Retrieving project from GitHub at {params['GGI_GITHUB_URL']}.")
     # Using an access token
     auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
-    if 'GGI_API_URL' in params:
-        g = Github(auth=auth, base_url=params['GGI_API_URL'])
-    else:
-        g = Github(auth=auth)
+#    if 'GGI_API_URL' in params:
+    g = Github(auth=auth, base_url=params['GGI_API_URL'])
+#    else:
+#        g = Github(auth=auth)
     repo = g.get_repo(params["github_project"])
 
     """

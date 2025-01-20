@@ -64,8 +64,9 @@ def retrieve_env():
         # Github Enterprise with custom hostname
         params['GGI_API_URL'] = f"{params['github_host']}/api/v3"
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin(params['github_host'] + '/', params['GGI_GITHUB_PROJECT'])
+        params['GGI_PAGES_URL'] = 'https://fix.me'
     else:
-        # Public Web Github
+        # Public Web GitHub
         params['GGI_API_URL'] = None
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
         params['GGI_PAGES_URL'] = urllib.parse.urljoin(
@@ -74,6 +75,9 @@ def retrieve_env():
         print("- Using public GitHub instance.")
 
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')
+    print(f"*** GGI_ACTIVITIES_URL= {params['GGI_ACTIVITIES_URL']}")
+    print(f"*** GGI_GITHUB_URL= {params['GGI_GITHUB_URL']}")
+    print(f"*** GGI_PAGES_URL= {params['GGI_PAGES_URL']}")
 
     return params
 

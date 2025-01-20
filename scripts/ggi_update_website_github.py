@@ -72,8 +72,10 @@ def retrieve_env():
     #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
     params['GGI_PAGES_URL'] = 'https://nicolastoussaint.github.io/my-ggi-board/'
     #GITHUB_PAGES_URL="https://${GITHUB_ACTOR}.github.io/${GITHUB_REPOSITORY#*/}/"
-    print(f"\n# XXXXX GITHUB_ACTOR: {GITHUB_ACTOR}")
-    print(f"\n# XXXXX GITHUB_REPOSITORY: {GITHUB_REPOSITORY}")
+    print(f"\n# XXXXX REPO_NAME: {os.environ['REPO_NAME']}")
+    print(f"\n# XXXXX PROJECT_NAME: {PROJECT_NAME}")
+    print(f"\n# XXXXX USER_NAME: {USER_NAME}")
+    
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')
 
     return params

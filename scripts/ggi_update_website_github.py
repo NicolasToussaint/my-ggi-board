@@ -64,7 +64,7 @@ def retrieve_env():
         github_host_root = params['github_host']
     else:
         # Public Web Github
-        params['GGI_API_URL'] = ""
+        #params['GGI_API_URL'] = ""
         github_host_root = 'https://github.com'
         print("- Using public GitHub instance.")
 
@@ -81,7 +81,10 @@ def retrieve_github_issues(params: dict):
     print(f"\n# Retrieving project from GitHub at {params['GGI_GITHUB_URL']}.")
     # Using an access token
     auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
-    g = Github(auth=auth, base_url=params['GGI_API_URL'])
+    if 'GGI_API_URL' in params:
+        g = Github(auth=auth, base_url=params['GGI_API_URL'])
+    else
+        g = Github(auth=auth)
     repo = g.get_repo(params["github_project"])
 
     """

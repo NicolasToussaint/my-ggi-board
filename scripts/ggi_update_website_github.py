@@ -38,13 +38,19 @@ def retrieve_env():
     with open(file_conf, 'r', encoding='utf-8') as f:
         params = json.load(f)
 
-    if 'github_project' in params:
+    if 'GITHUB_REPO_NAME' in os.environ: # github.repository
+        params['github_project'] = os.environ['GITHUB_REPO_NAME']
+        print(f"- Using GitHub project {params['github_project']} " +
+              "from environment variable file.")
+    elif 'github_project' in params:
         print(f"- Using GitHub project {params['github_project']} " +
               "from configuration file.")
     else:
         print("I need a project (org + repo), e.g. ospo-alliance/" +
               "my-ggi-board. Exiting.")
         exit(1)
+    params['github_username']=re.sub('/.*$', '', params['github_project']
+    params['github_repository']=re.sub('^.*/', '', params['github_project']
 
     if 'GGI_GITHUB_TOKEN' in os.environ:
         print("- Using ggi_github_token from env var.")
@@ -60,19 +66,19 @@ def retrieve_env():
               "from configuration file.")
         # Github Enterprise with custom hostname
         params['GGI_API_URL'] = f"{params['github_host']}/api/v3"
-        params['GGI_GITHUB_URL'] = urllib.parse.urljoin(params['github_host'] + '/', params['GGI_GITHUB_PROJECT'])
+        params['GGI_GITHUB_URL'] = urllib.parse.urljoin(params['github_host'] + '/', params['github_project'])
     else:
         # Public Web Github
         params['GGI_API_URL'] = None
-        params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
-        params['GGI_PAGES_URL'] = urllib.parse.urljoin('https://' + os.environ['GITHUB_USER_NAME'] + '.github.io/', params['GGI_GITHUB_PROJECT'])
+        params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['github_project'])
+        params['GGI_PAGES_URL'] = urllib.parse.urljoin('https://' + params['github_username'] + '.github.io/', params['github_repository'])
         print("- Using public GitHub instance.")
 
     # FIXME - find real url to Pages, or manually build it
     # ex. https://<user>.github.io/my-ggi-board/
     #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
     #GITHUB_PAGES_URL="https://${GITHUB_ACTOR}.github.io/${GITHUB_REPOSITORY#*/}/"
-    print(f"\n# XXXXX REPO_NAME: {os.environ['GITHUB_REPO_NAME']}")
+    print(f"\n# XXXXX REPO_NAME: {os.environ['GITHUB_']}")
     print(f"\n# XXXXX USER_NAME: {os.environ['GITHUB_USER_NAME']}")
     
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')

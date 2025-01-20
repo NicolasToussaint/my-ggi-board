@@ -53,6 +53,7 @@ def retrieve_env():
         print("- Cannot find env var GGI_GITHUB_TOKEN. Please set it and re-run me.")
         exit(1)
 
+    params['GGI_GITHUB_PROJECT'] = params['github_project']
     github_host_root = ''
     # Using an access token
     auth = Auth.Token(params['GGI_GITHUB_TOKEN'])

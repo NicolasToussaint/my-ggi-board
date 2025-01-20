@@ -65,7 +65,7 @@ def retrieve_env():
         # Public Web Github
         params['GGI_API_URL'] = None
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
-        params['GGI_PAGES_URL'] = urllib.parse.urljoin('https://' + os.environ['USER_NAME'] + 'github.io/', params['GGI_GITHUB_PROJECT'])
+        params['GGI_PAGES_URL'] = urllib.parse.urljoin('https://' + os.environ['GITHUB_USER_NAME'] + '.github.io/', params['GGI_GITHUB_PROJECT'])
         print("- Using public GitHub instance.")
 
     # FIXME - find real url to Pages, or manually build it

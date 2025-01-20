@@ -54,6 +54,9 @@ def retrieve_env():
         exit(1)
 
     github_host_root = ''
+    # Using an access token
+    auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
+
     if 'github_host' in params and params['github_host'] != 'null':
         print(f"- Using GitHub on-premise host {params['github_host']} " +
               "from configuration file.")
@@ -78,9 +81,6 @@ def retrieve_env():
 
 
 def retrieve_github_issues(params: dict):
-    # Using an access token
-    auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
-
     print(f"\n# Retrieving project from GitHub at {params['GGI_GITHUB_URL']}.")
     repo = g.get_repo(params["github_project"])
 

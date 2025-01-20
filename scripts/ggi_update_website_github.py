@@ -83,7 +83,7 @@ def retrieve_github_issues(params: dict):
     auth = Auth.Token(params['GGI_GITHUB_TOKEN'])
     if 'GGI_API_URL' in params:
         g = Github(auth=auth, base_url=params['GGI_API_URL'])
-    else
+    else:
         g = Github(auth=auth)
     repo = g.get_repo(params["github_project"])
 

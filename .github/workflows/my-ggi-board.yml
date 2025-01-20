@@ -37,8 +37,8 @@ jobs:
       - name: GGI Update website
         env:
           GGI_GITHUB_TOKEN: ${{ secrets.GGI_GITHUB_TOKEN }}
-          REPO_NAME: ${{github.repository}}
-          USER_NAME: ${{github.actor}}
+          GITHUB_REPO_NAME: ${{github.repository}}
+          GITHUB_USER_NAME: ${{github.actor}}
         run: |
           python scripts/ggi_update_website_github.py
       - name: Save generated website files

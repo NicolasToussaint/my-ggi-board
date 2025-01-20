@@ -65,16 +65,15 @@ def retrieve_env():
         # Public Web Github
         params['GGI_API_URL'] = None
         params['GGI_GITHUB_URL'] = urllib.parse.urljoin('https://github.com/', params['GGI_GITHUB_PROJECT'])
+        params['GGI_PAGES_URL'] = urllib.parse.urljoin('https://' + os.environ['USER_NAME'] + 'github.io/', params['GGI_GITHUB_PROJECT'])
         print("- Using public GitHub instance.")
 
     # FIXME - find real url to Pages, or manually build it
     # ex. https://<user>.github.io/my-ggi-board/
     #params['GGI_PAGES_URL'] = urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/pages-fix-me')
-    params['GGI_PAGES_URL'] = 'https://nicolastoussaint.github.io/my-ggi-board/'
     #GITHUB_PAGES_URL="https://${GITHUB_ACTOR}.github.io/${GITHUB_REPOSITORY#*/}/"
-    print(f"\n# XXXXX REPO_NAME: {os.environ['REPO_NAME']}")
-    print(f"\n# XXXXX PROJECT_NAME: {os.environ['PROJECT_NAME']}")
-    print(f"\n# XXXXX USER_NAME: {os.environ['USER_NAME']}")
+    print(f"\n# XXXXX REPO_NAME: {os.environ['GITHUB_REPO_NAME']}")
+    print(f"\n# XXXXX USER_NAME: {os.environ['GITHUB_USER_NAME']}")
     
     params['GGI_ACTIVITIES_URL']= urllib.parse.urljoin(params['GGI_GITHUB_URL'], '/issues')
 
